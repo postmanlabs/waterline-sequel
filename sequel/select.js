@@ -80,6 +80,7 @@ SelectBuilder.prototype.buildSimpleSelect = function buildSimpleSelect(queryObje
     if(strategy !== 1) return;
 
     var population = queryObject.instructions[attr].instructions[0];
+    var subselect = population.reducedSelection && _.isArray(population.select) && population.select.length;
 
     // Handle hasFK
     var childAlias = _.find(_.values(self.schema), {tableName: population.child}).tableName;
@@ -87,6 +88,7 @@ SelectBuilder.prototype.buildSimpleSelect = function buildSimpleSelect(queryObje
     _.keys(self.schema[childAlias].attributes).forEach(function(key) {
       var schema = self.schema[childAlias].attributes[key];
       if(hop(schema, 'collection')) return;
+      if (subselect && population.select.indexOf(key) === -1) { return; }
       selectKeys.push({ table: population.alias ? "__"+population.alias : population.child, key: schema.columnName || key, alias: population.parentKey });
     });
   });
