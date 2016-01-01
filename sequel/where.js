@@ -230,7 +230,36 @@ WhereBuilder.prototype.complex = function complex(queryObject, options) {
       // Read the queryObject and get back a query string and params
       parsedCriteria = criteriaParser.read(population.criteria);
 
-      queryString = '(SELECT * FROM ' + utils.escapeName(population.child, self.escapeCharacter) + ' AS ' + utils.escapeName(populationAlias, self.escapeCharacter) + ' WHERE ' + utils.escapeName(population.childKey, self.escapeCharacter) + ' = ^?^ ';
+      queryString = '(SELECT ';
+
+      if (population.reducedSelection && _.isArray(population.select) && population.select.length) {
+        // ensure that the primary key and foreign key is present
+        (childPK && (population.select.indexOf(childPK) === -1)) && population.select.unshift(childPK);
+        (population.childKey && (population.select.indexOf(population.childKey) === -1)) &&
+            population.select.push(population.childKey);
+
+        var selectKeys = [];
+        _.keys(self.schema[populationAlias].attributes).forEach(function (key) {
+          var schema = self.schema[populationAlias].attributes[key];
+          if (hop(schema, 'collection') || (population.select.indexOf(key) === -1)) return;
+          selectKeys.push({ table: population.child, key: schema.columnName || key });
+        });
+
+        selectKeys.forEach(function(projection) {
+          var projectionAlias = _.find(_.values(self.schema), {tableName: projection.table}).tableName;
+            queryString += utils.escapeName(projectionAlias, self.escapeCharacter) + '.' +
+            utils.escapeName(projection.key, self.escapeCharacter) + ',';
+        });
+        // remove trailing comma
+        selectKeys.length && (queryString.slice(-1) === ',') && (queryString = queryString.slice(0, -1));
+      }
+      else {
+        queryString += '*';
+      }
+
+      queryString += ' FROM ' + utils.escapeName(population.child, self.escapeCharacter) + ' AS ' +
+        utils.escapeName(populationAlias, self.escapeCharacter) + ' WHERE ' +
+        utils.escapeName(population.childKey, self.escapeCharacter) + ' = ^?^ ';
       if(parsedCriteria) {
 
         // If where criteria was used append an AND clause
