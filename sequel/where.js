@@ -322,6 +322,7 @@ WhereBuilder.prototype.complex = function complex(queryObject, options) {
       _.keys(self.schema[stage2ChildAlias].attributes).forEach(function(key) {
         var schema = self.schema[stage2ChildAlias].attributes[key];
         if(hop(schema, 'collection')) return;
+        if (stage2.reducedSelection && stage2.select.indexOf(key) == -1) { return; }
         selectKeys.push({ table: stage2.child, key: schema.columnName || key });
       });
 
