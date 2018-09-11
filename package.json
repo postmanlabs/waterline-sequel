@@ -1,5 +1,5 @@
 {
-  "name": "waterline-sequel",
+  "name": "postman-waterline-sequel",
   "description": "A helper library for generating SQL queries from the Waterline Query Language.",
   "version": "0.5.1-postman.3",
   "author": "Cody Stoltman <particlebanana@gmail.com>",
@@ -7,7 +7,7 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git://github.com/balderdashy/waterline-sequel.git"
+    "url": "git://github.com/postmanlabs/postman-waterline-sequel.git"
   },
   "dependencies": {
     "lodash": "~3.10.0"
