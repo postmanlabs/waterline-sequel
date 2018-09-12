@@ -10,27 +10,31 @@
     "url": "git://github.com/postmanlabs/postman-waterline-sequel.git"
   },
   "dependencies": {
-    "lodash": "~3.10.0"
+    "lodash": "~3.10.0",
+    "snyk": "^1.95.3"
   },
   "devDependencies": {
     "async": "^0.9.0",
     "chai": "^2.1.1",
     "jpath": "^0.0.20",
-    "mocha": "^2.2.1",
-    "npm": "^2.7.4",
+    "mocha": "^4.0.0",
+    "npm": "^5.7.1",
     "sails-mysql": "git://github.com/balderdashy/sails-mysql",
     "sails-postgresql": "git://github.com/balderdashy/sails-postgresql",
     "should": "^5.2.0",
-    "waterline-adapter-tests": "^0.10.15"
+    "waterline-adapter-tests": "^1.0.0"
   },
   "scripts": {
     "test": "make test",
-    "test-integration": "make test-integration"
+    "test-integration": "make test-integration",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "main": "sequel/index",
   "directories": {
     "sequel": "./sequel"
   },
   "license": "MIT",
-  "bugs": "https://github.com/balderdashy/waterline-sequel/issues"
+  "bugs": "https://github.com/balderdashy/waterline-sequel/issues",
+  "snyk": true
 }
