@@ -16,12 +16,12 @@
     "async": "^0.9.0",
     "chai": "^2.1.1",
     "jpath": "^0.0.20",
-    "mocha": "^2.2.1",
-    "npm": "^2.7.4",
+    "mocha": "^3.0.0",
+    "npm": "^3.0.0",
     "sails-mysql": "git://github.com/balderdashy/sails-mysql",
     "sails-postgresql": "git://github.com/balderdashy/sails-postgresql",
     "should": "^5.2.0",
-    "waterline-adapter-tests": "^0.10.15"
+    "waterline-adapter-tests": "^1.0.0"
   },
   "scripts": {
     "test": "make test",
