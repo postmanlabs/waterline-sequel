@@ -1,0 +1,24 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - sails-mysql > async > lodash:
+        patched: '2019-07-04T06:30:50.873Z'
+    - sails-postgresql > async > lodash:
+        patched: '2019-07-04T06:30:50.873Z'
+    - sails-mysql > waterline-utils > async > lodash:
+        patched: '2019-07-04T06:30:50.873Z'
+    - sails-postgresql > waterline-utils > async > lodash:
+        patched: '2019-07-04T06:30:50.873Z'
+    - npm > request > form-data > async > lodash:
+        patched: '2019-07-04T06:30:50.873Z'
+    - sails-mysql > machinepack-mysql > waterline-sql-builder > knex > lodash:
+        patched: '2019-07-04T06:30:50.873Z'
+    - sails-postgresql > machinepack-postgresql > waterline-sql-builder > knex > lodash:
+        patched: '2019-07-04T06:30:50.873Z'
+    - sails-mysql > machinepack-mysql > waterline-sql-builder > waterline-utils > async > lodash:
+        patched: '2019-07-04T06:30:50.873Z'
+    - sails-postgresql > machinepack-postgresql > waterline-sql-builder > waterline-utils > async > lodash:
+        patched: '2019-07-04T06:30:50.873Z'
