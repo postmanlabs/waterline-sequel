@@ -10,7 +10,8 @@
     "url": "git://github.com/postmanlabs/postman-waterline-sequel.git"
   },
   "dependencies": {
-    "lodash": "~3.10.0"
+    "lodash": "~3.10.0",
+    "snyk": "^1.361.3"
   },
   "devDependencies": {
     "async": "^0.9.0",
@@ -25,12 +26,15 @@
   },
   "scripts": {
     "test": "make test",
-    "test-integration": "make test-integration"
+    "test-integration": "make test-integration",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "main": "sequel/index",
   "directories": {
     "sequel": "./sequel"
   },
   "license": "MIT",
-  "bugs": "https://github.com/balderdashy/waterline-sequel/issues"
+  "bugs": "https://github.com/balderdashy/waterline-sequel/issues",
+  "snyk": true
 }
